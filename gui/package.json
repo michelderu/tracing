@@ -1,0 +1,51 @@
+{
+  "name": "grove-vue-template",
+  "version": "1.0.0-rc.1",
+  "description": "Vue template for MarkLogic Grove",
+  "main": "index.js",
+  "scripts": {
+    "build": "cd ui && npm run build",
+    "lint": "cd middle-tier && npm run lint; cd ../ui && npm run lint",
+    "lint:fix": "cd middle-tier && npm run lint:fix; cd ../ui && npm run lint:fix",
+    "postinstall": "node scripts/postinstall.js",
+    "start": "concurrently --kill-others \"npm run middleTier\" \"npm run ui\" ",
+    "start:prod": "cross-env-shell NODE_ENV=production GROVE_UI_BUILD_PATH=../ui/dist npm run middleTier:prod",
+    "middleTier": "cd middle-tier && npm start",
+    "middleTier:prod": "cd middle-tier && npm run start:prod",
+    "ui": "cd ui && npm start",
+    "test": "concurrently 'cd middle-tier && npm test' 'cd ui && npm test'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@project.marklogic.com:7999/~gjosten/grove-vue-template.git"
+  },
+  "keywords": [
+    "MarkLogic",
+    "Grove",
+    "UI",
+    "search",
+    "Vue"
+  ],
+  "license": "Apache-2.0",
+  "contributors": [
+    {
+      "name": "Geert Josten",
+      "url": "https://github.com/grtjn"
+    },
+    {
+      "name": "Patrick McElwee",
+      "url": "https://github.com/patrickmcelwee"
+    },
+    {
+      "name": "Marianne Myers",
+      "url": "https://github.com/mariannemyers"
+    }
+  ],
+  "devDependencies": {
+    "concurrently": "^4.0.1",
+    "cross-env": "^5.2.0"
+  },
+  "dependencies": {
+    "ml-visjs-graph": "^0.5.1"
+  }
+}
