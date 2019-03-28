@@ -3,17 +3,25 @@ Show end to end provenance and lineage
 
 ## Get started
 Startup a clean MarkLogic Docker container
-`docker run -d --name=tracing-demo -p 8000-8020:8000-8020 marklogic:9.0-8.2`
+```
+docker run -d --name=tracing-demo -p 8000-8020:8000-8020 marklogic:9.0-8.2
+```
 Run the Data Hub
-`java -jar quick-start-4.2.2.war`
+```
+java -jar quick-start-4.2.2.war
+```
 Deploy the hub
-`gradle mlDeploy`
+````
+gradle mlDeploy
+```
 Deploy and start the UI
-`cd gui/marklogic`
-`gradle mlDeploy`
-`cd ..`
-`npm install`
-`npm start`
+```
+cd gui/marklogic
+gradle mlDeploy
+cd ..
+npm install
+npm start
+```
 
 ## Load and harmonize the data (while tracking provenance and lineage) / Or use the Data Hub Quick Start
 Ingest Dynamics and Salesforce data
