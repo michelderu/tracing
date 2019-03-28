@@ -1,0 +1,39 @@
+{
+  "info" : {
+    "title" : "Customer",
+    "version" : "0.0.1",
+    "description" : "Central customer 360 view"
+  },
+  "definitions" : {
+    "Customer" : {
+      "primaryKey" : "id",
+      "required" : [ ],
+      "pii" : [ ],
+      "elementRangeIndex" : [ ],
+      "rangeIndex" : [ ],
+      "wordLexicon" : [ ],
+      "properties" : {
+        "id" : {
+          "datatype" : "string",
+          "description" : "Unique ID of the customer",
+          "collation" : "http://marklogic.com/collation/codepoint"
+        },
+        "name" : {
+          "datatype" : "string",
+          "description" : "Full name of the customer",
+          "collation" : "http://marklogic.com/collation/codepoint"
+        },
+        "email" : {
+          "datatype" : "string",
+          "description" : "E-mail address of the customer",
+          "collation" : "http://marklogic.com/collation/codepoint"
+        },
+        "upstream" : {
+          "datatype" : "string",
+          "description" : "Source CRM system for this entity",
+          "collation" : "http://marklogic.com/collation/codepoint"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,110 @@
+buildscript {
+  repositories {
+    maven {url 'http://developer.marklogic.com/maven2/'}
+  }
+}
+
+plugins {
+    id 'java'
+    id 'eclipse'
+    id 'idea'
+
+    // This plugin allows you to create different environments
+    // for your gradle deploy. Each environment is represented
+    // by a gradle-${env}.properties file
+    // See https://github.com/stevesaliman/gradle-properties-plugin
+    // specify the env on the command line with:
+    // gradle -PenvironmentName=x ...
+    id 'net.saliman.properties' version '1.4.6'
+
+    // This gradle plugin extends the ml-gradle plugin with
+    // commands that make the Data Hub Framework do its magic
+    id 'com.marklogic.ml-data-hub' version '4.2.2'
+}
+
+repositories {
+    jcenter()
+    maven {url 'http://developer.marklogic.com/maven2/'}
+}
+
+configurations {
+    // This configuration captures the dependencies for running mlcp (Content Pump). This is only needed if you want
+    // to run mlcp via Gradle tasks. If you do, using com.marklogic.gradle.task.MlcpTask is a useful starting point, as
+    // shown below.  Need to force to use certain version of xml-apis library.
+    mlcp {
+        resolutionStrategy {
+            force "xml-apis:xml-apis:1.4.01"
+        }
+    }
+}
+
+dependencies {
+    // this allows you to write custom java code that depends
+    // on the Data Hub Framework library
+    compile 'com.marklogic:marklogic-data-hub:4.2.2'
+    compile 'com.marklogic:marklogic-xcc:9.0.7'
+
+    mlcp "com.marklogic:mlcp:9.0.7"
+    mlcp "org.apache.commons:commons-csv:1.2"
+    mlcp files("mlcp")
+}
+
+task harmonizeDynamics(type: com.marklogic.gradle.task.RunFlowTask) {
+    doFirst {
+        project.ext.entityName = "Customer"
+        project.ext.flowName = "harmonize_dynamics"
+        project.ext.flowType = "harmonize"
+        project.ext.sourceDB = mlStagingDbName
+        project.ext.destDB = mlFinalDbName
+    }
+}
+
+task harmonizeSalesforce(type: com.marklogic.gradle.task.RunFlowTask) {
+    doFirst {
+        project.ext.entityName = "Customer"
+        project.ext.flowName = "harmonize_salesforce"
+        project.ext.flowType = "harmonize"
+        project.ext.sourceDB = mlStagingDbName
+        project.ext.destDB = mlFinalDbName
+    }
+}
+
+task harmonizeAll(dependsOn: ['harmonizeDynamics', 'harmonizeSalesforce'])
+
+task ingestDynamics(type: com.marklogic.gradle.task.MlcpTask) {
+    classpath = configurations.mlcp
+    command = "IMPORT"
+    port = mlStagingPort.toInteger()
+    input_file_path = "./data/dynamics"
+    input_file_type = "delimited_text"
+    output_uri_replace = ".*/,''"
+    output_permissions = "rest-reader,read,rest-writer,update"
+    document_type = "json"
+    output_collections = "Customer,ingest_dynamics,input"
+    generate_uri="false"
+    delimiter = ""
+    transform_module = "/data-hub/4/transforms/mlcp-flow-transform.sjs"
+    transform_namespace = "http://marklogic.com/data-hub/mlcp-flow-transform"
+    transform_param = 'entity-name=Customer,flow-name=ingest_dynamics'
+}
+
+task ingestSalesforce(type: com.marklogic.gradle.task.MlcpTask) {
+    classpath = configurations.mlcp
+    command = "IMPORT"
+    port = mlStagingPort.toInteger()
+    input_file_path = "./data/salesforce"
+    input_file_type = "delimited_text"
+    output_uri_replace = ".*/,''"
+    output_permissions = "rest-reader,read,rest-writer,update"
+    document_type = "json"
+    output_collections = "Customer,ingest_salesforce,input"
+    generate_uri="false"
+    delimiter = ""
+    transform_module = "/data-hub/4/transforms/mlcp-flow-transform.sjs"
+    transform_namespace = "http://marklogic.com/data-hub/mlcp-flow-transform"
+    transform_param = 'entity-name=Customer,flow-name=ingest_salesforce'
+}
+
+task ingestAll(dependsOn: ['ingestDynamics', 'ingestSalesforce'])
+
+task ingestAndHarmonizeAll(dependsOn: ['ingestAll', 'harmonizeAll'])

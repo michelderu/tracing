@@ -1,0 +1,23 @@
+{
+  "language" : "zxx",
+  "name" : "map_salesforce",
+  "description" : "Data logic for the Salesforce mapping to Customer",
+  "version" : 2,
+  "targetEntityType" : "http://example.org/Customer-0.0.1/Customer",
+  "sourceContext" : "//",
+  "sourceURI" : "/crm_salesforce_person.csv-0-600",
+  "properties" : {
+    "upstream" : {
+      "sourcedFrom" : "id"
+    },
+    "name" : {
+      "sourcedFrom" : "first_name"
+    },
+    "id" : {
+      "sourcedFrom" : "id"
+    },
+    "email" : {
+      "sourcedFrom" : "email"
+    }
+  }
+}

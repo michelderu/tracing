@@ -1,0 +1,10 @@
+{
+  "language" : "zxx",
+  "name" : "map_dynamics",
+  "description" : "Data logic for the Dynamics mapping to Customer",
+  "version" : 4,
+  "targetEntityType" : "http://example.org/Customer-0.0.1/Customer",
+  "sourceContext" : "//",
+  "sourceURI" : "crm_dynamics_person.csv-0-600",
+  "properties" : { }
+}
