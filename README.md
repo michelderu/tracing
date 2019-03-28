@@ -11,7 +11,7 @@ Run the Data Hub
 java -jar quick-start-4.2.2.war
 ```
 Deploy the hub
-````
+```
 gradle mlDeploy
 ```
 Deploy and start the UI
@@ -25,21 +25,31 @@ npm start
 
 ## Load and harmonize the data (while tracking provenance and lineage) / Or use the Data Hub Quick Start
 Ingest Dynamics and Salesforce data
+
 `gradle ingestAll`
+
 Harmonize all data to Customer 360 view
+
 `gradle harmonizeAll`
+
 
 ## Retrieve data (while tracking usage)
 Retrieve customers through the data service
+
 `http://localhost:8011/v1/resources/customer?rs:name=Hans`
+
 
 ## Retrieve data through SQL
 Go to Query Console
+
 `http://localhost:8000`
+
 Select data-hub-FINAL
 Run SQL:
-`select * from customer`
-`limit 10`
+```
+select * from customer
+limit 10
+```
 
 ## Demo flow
 1. Start DHF and UI
