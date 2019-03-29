@@ -3,7 +3,7 @@ function get(context, params) {
   let startTime = fn.currentDateTime();
 
   // Get search parameter
-  let customerName = params['name'];
+  let query = params['q'];
 
   // Register this endpoint as an Activity
   const sem = require('/MarkLogic/semantics.xqy');
@@ -17,7 +17,7 @@ function get(context, params) {
   createTriple(sem.iri(activityName), sem.iri("http://www.w3.org/ns/prov#wasAssociatedWith"), sem.iri(currentUser));
 
   // Get URIs of Customers
-  let customerUris = cts.uris(null, null, cts.andQuery([cts.collectionQuery('Customer'), cts.wordQuery(customerName, null)]));
+  let customerUris = cts.uris(null, null, cts.andQuery([cts.collectionQuery('Customer'), cts.wordQuery(query, null)]));
 
   // Construct an object with required data
   let results = [];

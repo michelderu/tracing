@@ -9,30 +9,12 @@
  * @return - an array of triples
  */
 function createTriples(id, content, headers, options) {
-/*  
-  // Get all triples for the originating document
-  let triples = sem.sparql('\
-	SELECT ?p ?o\
-	WHERE {\
-  	<' + id + '> ?p ?o\
-	}\
-  ');
-  
-  // Construct new triples for the Final document
-  let tripleArray = [];
-  for (let triple of triples) {
-    tripleArray.push(sem.triple(sem.iri('source:'+id), triple.p, triple.o));
-  }
-*/
-  
-  // Create provenance for this document
-  let tripleArray = [];  
-  tripleArray.push(sem.triple(sem.iri('final:'+id), sem.iri("http://www.w3.org/1999/02/22-rdf-syntax-ns#type"), sem.iri("http://www.w3.org/ns/prov#Entity")));
-  tripleArray.push(sem.triple(sem.iri('final:'+id), sem.iri("http://www.w3.org/ns/prov#wasGeneratedBy"), sem.iri(options.flow)));
-  tripleArray.push(sem.triple(sem.iri('final:'+id), sem.iri("http://www.w3.org/ns/prov#generatedAtTime"), fn.currentDateTime()));
-  tripleArray.push(sem.triple(sem.iri('final:'+id), sem.iri("http://www.w3.org/ns/prov#wasDerivedFrom"), sem.iri('source:'+id)));
-  
-  return [tripleArray];
+  return [ 
+    sem.triple(sem.iri('final:'+id), sem.iri("http://www.w3.org/1999/02/22-rdf-syntax-ns#type"), sem.iri("http://www.w3.org/ns/prov#Entity")),
+    sem.triple(sem.iri('final:'+id), sem.iri("http://www.w3.org/ns/prov#wasGeneratedBy"), sem.iri(options.flow)),
+    sem.triple(sem.iri('final:'+id), sem.iri("http://www.w3.org/ns/prov#generatedAtTime"), fn.currentDateTime()),
+    sem.triple(sem.iri('final:'+id), sem.iri("http://www.w3.org/ns/prov#wasDerivedFrom"), sem.iri('source:'+id))
+  ]
 }
 
 module.exports = {

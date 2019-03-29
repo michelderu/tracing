@@ -42,7 +42,7 @@ Harmonize all data to Customer 360 view
 ## Retrieve data (while tracking usage)
 Retrieve customers through the data service
 
-`http://localhost:8011/v1/resources/customer?rs:name=Hans`
+`http://localhost:8011/v1/resources/customer?rs:q=Hans`
 
 ## Retrieve data through SQL
 Go to Query Console
@@ -60,6 +60,7 @@ limit 10
 Clear the STAGING and FINAL content dabases: DHF -> Browse data -> Kill icon
 
 Now reinstall the entities and templates:
+
 `gradle mlLoadModules`
 
 ## Demo flow
