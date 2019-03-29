@@ -1,6 +1,13 @@
 # Tracing demo
 Show end to end traceability through provenance and lineage using the PROV Ontology.
 
+The application uses:
+[MarkLogic] (http://developer.marklogic.com/)
+[Data Hub Framework] (https://marklogic.github.io/marklogic-data-hub/)
+[Grove] (https://marklogic-community.github.io/grove/)
+
+More information on PROV-O can be found here: https://www.w3.org/TR/prov-o/
+
 ## Get started
 Startup a clean MarkLogic Docker container
 
@@ -49,20 +56,36 @@ select * from customer
 limit 10
 ```
 
+## Start over again
+Clear the STAGING and FINAL content dabases: DHF -> Browse data -> Kill icon
+Now reinstall the entities and templates:
+`gradle mlLoadModules`
+
 ## Demo flow
+### Prerequisites
 1. Start DHF and UI
+### Explain the context
 2. Tell the story about the M&A and the resulting 2 CRM systems
 3. Show the source data as an example
 3. Explain the need from the Marketing department (1 single 360 view of all customers)
 4. Explain Turn Key Data Integration using DHF
+### Start the turn-key Data Integration with the end in mind (the 360 view of customer)
 5. Show the 360 view of the Customer entity
 6. Ingest the data
+### Show the immediate value for business and analysts
 7. Search through the STAGING db
+### Create source-to-target mapping directly with the business
 8. Show the mapping, explain that it generates all code allowing us to only change one line
 9. Run the harmonization
+### Show the immediate results and value of the data that turned into information
 10. Search through the FINAL db
+### Show the provenance and lineage information in the DHF
+11. SHow the Jobs and Traces panes
+### Show the end-to-end tracing using the Graph view
 11. Show the Tracing GUI with ingest and harmonization activities
+### Call a data service for end-to-end tracing information allowing for accountability and compliancy
 12. Explain end-to-end lineage
 13. Call the Data Services interface for Customer data (enabling a Data Driven organization and easy innovation)
 14. Show the Tracing GUI with the GetCustomer activity
+### Now also show how to leverage existing knowledge in the organisation
 15. Show the possibility to leverage existing SQL knowledge within the organization using the Query Console
