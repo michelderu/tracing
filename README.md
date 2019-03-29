@@ -58,6 +58,7 @@ limit 10
 
 ## Start over again
 Clear the STAGING and FINAL content dabases: DHF -> Browse data -> Kill icon
+
 Now reinstall the entities and templates:
 `gradle mlLoadModules`
 
