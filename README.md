@@ -2,9 +2,9 @@
 Show end to end traceability through provenance and lineage using the PROV Ontology.
 
 The application uses:
-[MarkLogic] (http://developer.marklogic.com/)
-[Data Hub Framework] (https://marklogic.github.io/marklogic-data-hub/)
-[Grove] (https://marklogic-community.github.io/grove/)
+- MarkLogic 9.0-8.2 (http://developer.marklogic.com/)
+- Data Hub Framework 4.2.2 (https://marklogic.github.io/marklogic-data-hub/)
+- Grove (https://marklogic-community.github.io/grove/)
 
 More information on PROV-O can be found here: https://www.w3.org/TR/prov-o/
 
@@ -82,10 +82,10 @@ Now reinstall the entities and templates:
 ### Show the provenance and lineage information in the DHF
 11. SHow the Jobs and Traces panes
 ### Show the end-to-end tracing using the Graph view
-11. Show the Tracing GUI with ingest and harmonization activities
+12. Show the Tracing GUI with ingest and harmonization activities
 ### Call a data service for end-to-end tracing information allowing for accountability and compliancy
-12. Explain end-to-end lineage
-13. Call the Data Services interface for Customer data (enabling a Data Driven organization and easy innovation)
-14. Show the Tracing GUI with the GetCustomer activity
+13. Explain end-to-end lineage
+14. Call the Data Services interface for Customer data (enabling a Data Driven organization and easy innovation)
+15. Show the Tracing GUI with the GetCustomer activity
 ### Now also show how to leverage existing knowledge in the organisation
-15. Show the possibility to leverage existing SQL knowledge within the organization using the Query Console
+16. Show the possibility to leverage existing SQL knowledge within the organization using the Query Console
