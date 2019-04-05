@@ -1,4 +1,16 @@
-# Tracing demo
+# Accountability through Traceability
+## Why should I care?
+MarkLogic allows for Traceability by default through tracking Provenance and Lineage.
+Once Traceability is managed in you Core Data Management environment, it means you become accountable again towards regulators.
+### REGULATORY CONTEXT
+Financial services companies operate in a heavily-regulated marketplace .
+Governments, regulators and industry bodies are currently demanding greater levels of transparency, accountability and compliance from financial institutions
+### COMPLIANCE COST
+Falling short of your compliance requirements can lead to fines, penalties and legal actions. Even going through an audit costs significant time and money
+### FUNCTIONALITY COST
+Higher compliance standards can also translate into greater software functionality and ultimately, more work for your team
+
+# Traceability Demo
 Show end to end traceability through provenance and lineage using the PROV Ontology.
 
 The application uses:
@@ -82,11 +94,11 @@ Now reinstall the entities and templates:
 ### Show the immediate results and value of the data that turned into information
 10. Search through the FINAL db
 ### Show the provenance and lineage information in the DHF
-11. SHow the Jobs and Traces panes
+11. Show the Jobs and Traces panes
 ### Show the end-to-end tracing using the Graph view
 12. Show the Tracing GUI with ingest and harmonization activities
-### Call a data service for end-to-end tracing information allowing for accountability and compliancy
 13. Explain end-to-end lineage
+### Call a data service for end-to-end tracing information allowing for accountability and compliancy
 14. Call the Data Services interface for Customer data (enabling a Data Driven organization and easy innovation)
 15. Show the Tracing GUI with the GetCustomer activity
 ### Now also show how to leverage existing knowledge in the organisation
